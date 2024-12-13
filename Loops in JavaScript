@@ -1,0 +1,126 @@
+Loops in JavaScript are used to repeatedly execute a block of code as long as a specified condition is true. They are essential for tasks like iterating over data structures, performing repetitive operations, or automating tasks. Let's explore the main types of loops in JavaScript:
+
+1. for Loop
+The for loop is used when you know in advance how many times you want to execute a block of code. It has three parts: initialization, condition, and increment/decrement.
+
+Syntax:
+
+javascript
+Copy code
+for (initialization; condition; update) {
+  // Code to be executed
+}
+Example: Print numbers 1 to 5:
+
+javascript
+Copy code
+for (let i = 1; i <= 5; i++) {
+  console.log(i);
+}
+Initialization: let i = 1 sets the starting point.
+Condition: i <= 5 ensures the loop runs while i is less than or equal to 5.
+Update: i++ increments i after each iteration.
+2. while Loop
+The while loop executes a block of code as long as a specified condition is true. It’s useful when the number of iterations isn’t predetermined.
+
+Syntax:
+
+javascript
+Copy code
+while (condition) {
+  // Code to be executed
+}
+Example: Print numbers 1 to 5:
+
+javascript
+Copy code
+let i = 1;
+while (i <= 5) {
+  console.log(i);
+  i++;
+}
+Condition: i <= 5 checks whether the loop should continue.
+You manually update the variable (i++) inside the loop.
+3. do...while Loop
+The do...while loop is similar to the while loop but ensures the block of code is executed at least once, even if the condition is false.
+
+Syntax:
+
+javascript
+Copy code
+do {
+  // Code to be executed
+} while (condition);
+Example: Print numbers 1 to 5:
+
+javascript
+Copy code
+let i = 1;
+do {
+  console.log(i);
+  i++;
+} while (i <= 5);
+The block runs first, then the condition (i <= 5) is checked.
+4. for...of Loop
+The for...of loop is used to iterate over iterable objects like arrays, strings, or sets.
+
+Syntax:
+
+javascript
+Copy code
+for (element of iterable) {
+  // Code to be executed
+}
+Example: Iterate over an array:
+
+javascript
+Copy code
+const fruits = ['apple', 'banana', 'cherry'];
+for (const fruit of fruits) {
+  console.log(fruit);
+}
+Outputs each fruit in the array.
+5. for...in Loop
+The for...in loop is used to iterate over the properties of an object.
+
+Syntax:
+
+javascript
+Copy code
+for (key in object) {
+  // Code to be executed
+}
+Example: Iterate over object properties:
+
+javascript
+Copy code
+const person = { name: 'Alice', age: 25, city: 'New York' };
+for (const key in person) {
+  console.log(`${key}: ${person[key]}`);
+}
+Outputs: name: Alice, age: 25, city: New York.
+6. Breaking Out of a Loop
+Use break to exit a loop prematurely:
+
+javascript
+Copy code
+for (let i = 1; i <= 10; i++) {
+  if (i === 5) break; // Exit the loop when i is 5
+  console.log(i);
+}
+7. Skipping an Iteration
+Use continue to skip the current iteration and move to the next:
+
+javascript
+Copy code
+for (let i = 1; i <= 5; i++) {
+  if (i === 3) continue; // Skip when i is 3
+  console.log(i);
+}
+When to Use Which Loop?
+for loop: When you know the exact number of iterations.
+while loop: When the loop depends on a condition rather than a counter.
+do...while loop: When the block should run at least once.
+for...of loop: When iterating over arrays, strings, or other iterable objects.
+for...in loop: When iterating over object properties.
+Loops are fundamental in JavaScript and mastering them enables efficient handling of repetitive tasks and data manipulation!
