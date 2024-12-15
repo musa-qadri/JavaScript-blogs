@@ -1,0 +1,108 @@
+
+A Blog System Using Pure Functions in JavaScript
+What is a Pure Function?
+A pure function is a function that:
+
+Always returns the same output for the same input.
+Does not modify external state (no side effects).
+Pure functions are predictable and easier to test, making them a good fit for functional programming.
+
+Designing a Pure Blog System
+Let’s create a simple blog system that includes:
+
+Adding a blog post.
+Editing a blog post.
+Deleting a blog post.
+Listing all blog posts.
+We will represent our data as an array of blog posts and use pure functions to manipulate it.
+
+Code Implementation
+javascript
+Copy code
+// Initial blog data (immutable principle)
+const initialBlogPosts = [];
+
+// Pure function to add a new blog post
+function addBlogPost(blogPosts, newPost) {
+  return [...blogPosts, newPost];
+}
+
+// Pure function to edit a blog post by ID
+function editBlogPost(blogPosts, postId, updatedContent) {
+  return blogPosts.map((post) =>
+    post.id === postId ? { ...post, ...updatedContent } : post
+  );
+}
+
+// Pure function to delete a blog post by ID
+function deleteBlogPost(blogPosts, postId) {
+  return blogPosts.filter((post) => post.id !== postId);
+}
+
+// Pure function to list all blog posts
+function listBlogPosts(blogPosts) {
+  return [...blogPosts]; // Return a copy to ensure immutability
+}
+
+// Example usage
+const newPost1 = { id: 1, title: "My First Post", content: "Hello, World!" };
+const newPost2 = { id: 2, title: "My Second Post", content: "Learning Pure Functions!" };
+
+// Adding posts
+let blogPosts = addBlogPost(initialBlogPosts, newPost1);
+blogPosts = addBlogPost(blogPosts, newPost2);
+
+// Editing a post
+blogPosts = editBlogPost(blogPosts, 1, { content: "Updated Content for Post 1" });
+
+// Deleting a post
+blogPosts = deleteBlogPost(blogPosts, 2);
+
+// Listing posts
+console.log("Current Blog Posts:", listBlogPosts(blogPosts));
+Output
+Add Post 1 and Post 2:
+
+javascript
+Copy code
+Current Blog Posts: [
+  { id: 1, title: "My First Post", content: "Hello, World!" },
+  { id: 2, title: "My Second Post", content: "Learning Pure Functions!" }
+]
+Edit Post 1:
+
+javascript
+Copy code
+Current Blog Posts: [
+  { id: 1, title: "My First Post", content: "Updated Content for Post 1" },
+  { id: 2, title: "My Second Post", content: "Learning Pure Functions!" }
+]
+Delete Post 2:
+
+javascript
+Copy code
+Current Blog Posts: [
+  { id: 1, title: "My First Post", content: "Updated Content for Post 1" }
+]
+Why Use Pure Functions for a Blog System?
+Predictability: Outputs are consistent and predictable.
+Immutability: Data remains unchanged, making it easier to manage state.
+Testability: Each function can be tested in isolation without relying on external state.
+Testing the Functions
+Here’s how we can test these functions:
+
+javascript
+Copy code
+console.assert(
+  listBlogPosts(initialBlogPosts).length === 0,
+  "Initial blog posts should be empty."
+);
+
+let posts = addBlogPost(initialBlogPosts, { id: 1, title: "Test Post", content: "Content" });
+console.assert(posts.length === 1, "Post should be added.");
+
+posts = editBlogPost(posts, 1, { content: "Updated Content" });
+console.assert(posts[0].content === "Updated Content", "Post content should be updated.");
+
+posts = deleteBlogPost(posts, 1);
+console.assert(posts.length === 0, "Post should be deleted.");
