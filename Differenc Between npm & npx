@@ -1,0 +1,40 @@
+The difference between npx and npm lies in their purpose and use cases within the Node.js ecosystem. Here's a breakdown:
+
+{NPM will install the package & than execute it whereas NPX directiy execute the code directly and than uninstalls that package}
+
+1. What is npm?
+Stands for: Node Package Manager
+Purpose:
+Installs and manages packages (libraries or tools) for a Node.js project.
+Provides scripts and commands defined in the package.json file (e.g., npm run build).
+Use Case: You use npm to install packages globally or locally, manage dependencies, and execute predefined scripts.
+Examples:
+
+Install a package locally: npm install package-name
+Install a package globally: npm install -g package-name
+Run a script: npm run script-name
+2. What is npx?
+Stands for: Node Package Execute
+Purpose:
+Directly executes binaries from Node.js packages without requiring a global installation.
+Used for one-off commands or running tools without cluttering your global or local environment.
+Use Case: Use npx to run CLI tools directly without first installing them, which is especially useful for trying out tools or executing commands from dependencies not installed globally.
+Examples:
+
+Run a tool directly: npx create-react-app my-app
+Execute a binary from node_modules: npx jest
+Key Differences
+Feature	npm	npx
+Primary Function	Install and manage packages.	Execute binaries from packages.
+Installation Needed	Requires installation first.	No installation required for direct execution.
+Global Installation	Often used to install globally available tools.	Avoids global installation, runs locally or directly.
+Use Case	Managing project dependencies.	Running commands or testing tools.
+Example Scenario:
+With npm:
+
+Install a tool globally: npm install -g eslint
+Run it: eslint file.js
+With npx:
+
+Directly run the tool: npx eslint file.js
+(No need to install ESLint globally.)
