@@ -1,0 +1,84 @@
+🔄 Understanding the JavaScript Event Loop
+JavaScript is a single-threaded language, which means it can only execute one task at a time. But then, how does it handle things like timers, asynchronous APIs, and user interactions without getting blocked? 🤔
+The secret lies in the Event Loop — one of the most important concepts behind JavaScript's asynchronous behavior.
+
+🧠 Key Concepts Before the Event Loop
+Before diving into the event loop, let’s understand the building blocks:
+
+1. Call Stack
+JavaScript uses a call stack to manage function calls. When a function is called, it's added to the top of the stack. When it returns, it’s removed.
+
+js
+Copy
+Edit
+function greet() {
+  console.log('Hello');
+}
+greet(); // 'greet' goes on the call stack
+2. Web APIs (Browser APIs)
+Functions like setTimeout, DOM events, and AJAX requests are handled by Web APIs provided by the browser (or Node.js APIs on the server).
+
+js
+Copy
+Edit
+setTimeout(() => {
+  console.log('Timeout!');
+}, 1000);
+Here, setTimeout is handed off to the browser, which manages the timer in the background.
+
+3. Callback Queue (Task Queue)
+Once a Web API finishes (like the timer in setTimeout), its callback is pushed into the callback queue, waiting to be executed.
+
+🔁 The Event Loop in Action
+The event loop constantly checks if the call stack is empty. If it is, it takes the first task from the callback queue and pushes it onto the call stack.
+
+Here’s a visual breakdown:
+
+js
+Copy
+Edit
+console.log('Start');
+
+setTimeout(() => {
+  console.log('Callback');
+}, 0);
+
+console.log('End');
+Output:
+sql
+Copy
+Edit
+Start
+End
+Callback
+Even though the timer is set to 0, the callback runs after the current call stack is clear. This shows how the event loop delays execution until the main thread is free.
+
+🧪 A More Complex Example
+js
+Copy
+Edit
+console.log('Script start');
+
+setTimeout(() => {
+  console.log('setTimeout');
+}, 0);
+
+Promise.resolve().then(() => {
+  console.log('Promise');
+});
+
+console.log('Script end');
+Output:
+arduino
+Copy
+Edit
+Script start
+Script end
+Promise
+setTimeout
+Why this order?
+console.log statements go directly to the call stack.
+
+Promise.then callbacks go to the microtask queue.
+
+setTimeout callbacks go to the task queue.
